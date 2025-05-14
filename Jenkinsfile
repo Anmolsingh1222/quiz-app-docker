@@ -10,18 +10,13 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                script {
-                    dockerImage = docker.build("quiz-app-image")
-                }
+                bat 'docker build -t quiz-app-image .'
             }
         }
 
         stage('Run Docker Container') {
             steps {
-                script {
-                    sh 'docker rm -f quiz-app-container || true'
-                    sh 'docker run -d -p 8081:80 --name quiz-app-container quiz-app-image'
-                }
+                bat 'docker run -d -p 80:80 quiz-app-image'
             }
         }
     }
