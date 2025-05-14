@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  quiz-app:
+    build: .
+    ports:
+      - "8081:80"
